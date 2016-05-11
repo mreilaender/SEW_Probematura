@@ -10,4 +10,4 @@ client.Client starten
 Nun ist es möglich auf der Console des Clients, Nachrichten zu schreiben. Diese werden an alle Clients weitergeleitet und bei deren Console ausgegeben.
 
 # Config
-Das Interface util.Config, beschreibt die für den ServerSocket verwendeten Port. Clients verwenden dieses Interface im sich damit auf den Server zu verbinden.
+Das Interface util.Config, beschreibt den für den ServerSocket verwendeten Port. Clients verwenden dieses Interface um sich damit auf den Server zu verbinden.
