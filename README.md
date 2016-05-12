@@ -9,5 +9,9 @@ client.Client starten
 
 Nun ist es möglich auf der Console des Clients, Nachrichten zu schreiben. Diese werden an alle Clients weitergeleitet und bei deren Console ausgegeben.
 
+Um Dateien zu senden, einfach in die Console des Clients /sendFile <filename> eingeben.
+
+<filename> kann ein absloluter oder relativer Pfad sein.
+
 # Config
 Das Interface util.Config, beschreibt den für den ServerSocket verwendeten Port. Clients verwenden dieses Interface um sich damit auf den Server zu verbinden.
