@@ -11,7 +11,7 @@ Nun ist es möglich auf der Console des Clients, Nachrichten zu schreiben. Diese
 
 Um Dateien zu senden, einfach in die Console des Clients /sendFile <filename> eingeben.
 
-<filename> kann ein absloluter oder relativer Pfad sein.
+\<filename\> kann ein absloluter oder relativer Pfad sein.
 
 # Config
 Das Interface util.Config, beschreibt den für den ServerSocket verwendeten Port. Clients verwenden dieses Interface um sich damit auf den Server zu verbinden.
