@@ -1,11 +1,11 @@
 package server;
 
+import util.Config;
+import util.FileMessage;
 import util.Message;
 import util.TextMessage;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
@@ -40,13 +40,20 @@ public class ClientHandler implements Runnable {
                             textMessage.setSender(String.format("Client%d", ((InetSocketAddress)client.getRemoteSocketAddress()).getPort()));
                             ClientManager.sendBroadcastMessage(textMessage);
                             break;
+                        case FILE:
+                            FileMessage fileMessage = (FileMessage)message;
+                            System.out.println("File received from client");
+                            System.out.println("Filename: " + fileMessage.getFilename());
+                            FileManager.saveFile((FileMessage)message);
+                            break;
                     }
                 }
             }
         } catch (IOException e) {
-            if(e instanceof SocketException) {
+            if(e.getMessage().contains("Connection reset"))
                 System.out.println(String.format("Client%d disconnected", ((InetSocketAddress)client.getRemoteSocketAddress()).getPort()));
-            }
+            else
+                e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

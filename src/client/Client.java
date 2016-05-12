@@ -1,15 +1,14 @@
 package client;
 
 import util.Config;
+import util.FileMessage;
 import util.Message;
 import util.TextMessage;
 
-import javax.xml.soap.Text;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * @author mreilaender
@@ -34,11 +33,17 @@ public class Client {
             outputStream = new ObjectOutputStream(client.getOutputStream());
             inputStream = new ObjectInputStream(client.getInputStream());
             new Thread(new MessageListener(System.in, outputStream)).start();
+
             while (running) {
                 Message message = null;
                 while((message = (Message) inputStream.readObject()) != null) {
-                    TextMessage textMessage = (TextMessage) message;
-                    System.out.println(String.format("%s: %s", textMessage.getSender(), textMessage.getMessage()));
+                    switch (message.getType())
+                    {
+                        case TEXTMESSAGE:
+                            TextMessage textMessage = (TextMessage) message;
+                            System.out.println(String.format("%s: %s", textMessage.getSender(), textMessage.getMessage()));
+                            break;
+                    }
                 }
             }
         } catch (IOException e) {
